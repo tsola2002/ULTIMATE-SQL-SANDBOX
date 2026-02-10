@@ -66,3 +66,9 @@ FROM COUNTRY;
 SELECT Continent, COUNT(*) AS country_count
 FROM COUNTRY
 GROUP BY continent;
+
+-- this will select countries that start with the word united
+SELECT Name FROM country WHERE Name LIKE 'United %';
+
+-- this will select countries that end with the word city
+SELECT Name FROM country WHERE Name LIKE '%ria';
