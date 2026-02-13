@@ -25,6 +25,7 @@ WHERE CountryCode='MEX' AND Population>1000000;
 -- aggregation function to pick out sum of replacement_cost column based on the rating
 SELECT SUM(replacement_cost) from film;
 SELECT rating, SUM(replacement_cost) from film GROUP BY rating;
+
 -- aggregation function to pick out maximum of replacement_cost based on the rating
 SELECT MAX(replacement_cost) from film;
 SELECT SUM(replacement_cost) from film;
@@ -36,6 +37,7 @@ SELECT MIN(replacement_cost) from film;
 -- aggregation function to pick out number of occurrences in replacement_cost column based on the rating
 SELECT COUNT(replacement_cost) from film;
 SELECT rating, COUNT(replacement_cost) from film GROUP BY rating;
+
 -- aggregation function to calculate the average of the replacement_cost column based on the rating
 SELECT rating, AVG(replacement_cost) from film GROUP BY rating;
 SELECT AVG(replacement_cost) from film;
