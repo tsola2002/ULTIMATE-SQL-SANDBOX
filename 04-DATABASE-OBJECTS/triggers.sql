@@ -1,3 +1,40 @@
+--- creating a trigger to prevent inserting cities with negative population
+DELIMITER $$
+
+CREATE TRIGGER prevent_negative_population
+BEFORE INSERT ON city
+FOR EACH ROW
+BEGIN
+	IF NEW.Population < 0 THEN
+		SIGNAL SQLSTATE '45000'
+		SET MESSAGE_TEXT = 'Population cannot be negative';
+	END IF;
+END $$
+
+DELIMITER;
+
+--- this will list all triggers in a database
+SHOW TRIGGERS;
+
+-- maintaining country population
+DELIMITER $$
+
+CREATE TRIGGER update_country_population
+AFTER INSERT ON city
+FOR EACH ROW
+BEGIN
+	UPDATE country
+	SET Population = Population + NEW.Population
+	WHERE Code = NEW.CountryCode;
+END $$
+
+DELIMITER;
+
+
+
+
+
+
 CREATE TABLE `lookups` (
   `Key` varchar(50) NOT NULL,
   `Value` varchar(255) NOT NULL,
